@@ -3,7 +3,7 @@ body {
   font-family: 'Roboto Condensed', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-smoothing: grayscale;
-  background-color: #f5f5dc;
+  background-color: #000;
 }
 button, input {
   font-family: 'Roboto Condensed', sans-serif;
@@ -11,53 +11,30 @@ button, input {
 .wrapper {
   background: #FFFFFF;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
-  border-radius: 20px;
-  max-width: 1080px;
-  margin:50px auto;
+  max-width: 1280px;
+  margin:0 auto;
 }
 header {
+  padding: 25px;
   border-bottom: 1px solid #f4f4f4;
+  background-color: #000;
     img {
       margin-right:  20px;
     }
 
     h3, p {
       margin: 0;
+      color: #fff
+    }
+    span {
+      color: #fff;
+      font-size: 24px;
     }
 
 }
-.item {
-  border: 1px solid #f3f3f3;
-  padding:25px;
-  width: 185px;
-  border-radius: 20px;
-  margin-right: 30px;
 
-  h5{
-    font-weight: 700;
-    font-size: 14px;
-  }
-  b {
-    font-size: 13px;
-  }
-}
-.button {
-  background: #FFFFFF;
-  border: 1px solid #f2f2f2;
-  box-sizing: border-box;
-  border-radius: 10px;
-  height: 30px;
-  width: 30px;
-  margin-left: 30px;
-  cursor: pointer;
-}
-.price {
-  padding-right: 10px;
-  font-size: 12px;
-}
 .search__box {
   border: 1px solid #f2f2f2;
-  border-radius: 10px;
   padding: 0 15px;
   input {
     border: none;
@@ -68,6 +45,7 @@ header {
 }
 .rightBar {
   display: flex;
+  overflow: auto;
   flex-direction: column;
   position: absolute;
   right: 0;
@@ -77,8 +55,8 @@ header {
   box-shadow: -10px 4px 24px rgba(0,0,0,0.1);
   padding: 40px;
   .items {
-    overflow: auto;
     flex: 1;
+    overflow: auto;
   }
   h2 {
     margin: 0;
@@ -96,7 +74,6 @@ header {
 
 .cartItem {
   border: 1px solid #f3f3f3;
-  border-radius: 20px;
   overflow: hidden;
   p {
     font-size: 14px;
@@ -128,20 +105,22 @@ header {
   }
   button {
     width: 100%;
-    background-color: #9dd558;
-    border-radius: 17px;
+    background-color: #000;
     height: 50px;
-    border: none;
     color: #fff;
+    border: 1px solid #000;
     cursor: pointer;
     font-size: 18px;
     font-weight: 700;
     &:hover {
-      background-color: #9df558;
+      background-color: #fff;
+      color: #000;
+     
       transition-duration: 0.5s;
     }
     &:active {
-      background-color: darken(#9dd558, 5%);
+      background-color: darken(#000, 5%);
+      color: #fff;
     }
   }
 }

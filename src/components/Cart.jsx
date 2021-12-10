@@ -1,42 +1,49 @@
 import React from "react";
-function Cart() {
+function Cart({ onCartClose, onRemove, items = [] }) {
     return (
-        <div style={{ display: 'none' }} className="rightBarShadow">
+        <div className="rightBarShadow">
             <div className="rightBar">
-                <h2 className="mb-30 d-flex justify-between">Cart<img className="buttonRemove cu-p" src="/img/button-remove.svg" alt="remove" /></h2>
-                <div className="items">
-                    <div className="cartItem d-flex align-center mb-20">
-                        <img className="mr-15" width={100} height={100} src="/img/vinyl/1.jpg" alt="Albom" />
-                        <div className="mr-40">
-                            <p>Green day - Best</p>
-                            <b>25$</b>
+                <h2 className="mb-30 d-flex justify-between">Cart<img onClick={onCartClose} className="buttonRemove cu-p" src="/img/button-remove.svg" alt="remove" /></h2>
+
+                {
+                    items.length > 0 ? (
+                        <div>
+                            <div className="items">
+                                {items.map((obj) => (
+                                    <div key={obj.id} className="cartItem d-flex align-center mb-20">
+                                        <img className="mr-15" width={100} height={100} src={obj.img} alt="Albom" />
+                                        <div className="mr-40">
+                                            <p>{obj.title}</p>
+                                            <b>{obj.price}$</b>
+                                        </div>
+                                        <img onClick={() => onRemove(obj.id)} className="buttonRemove" src="/img/button-remove.svg" alt="remove" />
+                                    </div>
+                                ))}
+
+                            </div>
+                            <div className="totalBlock">
+                                <ul>
+                                    <li className="d-flex">
+                                        <span>Total:</span>
+                                        <div></div>
+                                        <b>50$</b>
+                                    </li>
+                                    <li className="d-flex">
+                                        <span>Tax: 10%</span>
+                                        <div></div>
+                                        <b>5$</b>
+                                    </li>
+                                </ul>
+                                <button>Checkout</button>
+                            </div></div> ) : (
+                        <div className="d-flex align-center flex-column flex">
+                            <h2 className="mb-20">Cart empty</h2>
+                            <img src="/img/emptyCart.png" alt="emptyCart" />
                         </div>
-                        <img className="buttonRemove" src="/img/button-remove.svg" alt="remove" />
-                    </div>
-                    <div className="cartItem d-flex align-center">
-                        <img className="mr-15" width={100} height={100} src="/img/vinyl/3.jpg" alt="Albom" />
-                        <div className="mr-40">
-                            <p>Green day - DOS</p>
-                            <b>25$</b>
-                        </div>
-                        <img className="buttonRemove" src="/img/button-remove.svg" alt="remove" />
-                    </div>
-                </div>
-                <div className="totalBlock">
-                    <ul>
-                        <li className="d-flex">
-                            <span>Total:</span>
-                            <div></div>
-                            <b>50$</b>
-                        </li>
-                        <li className="d-flex">
-                            <span>Tax: 10%</span>
-                            <div></div>
-                            <b>5$</b>
-                        </li>
-                    </ul>
-                    <button>Checkout</button>
-                </div>
+                            )}
+
+
+
             </div>
         </div>
     )
