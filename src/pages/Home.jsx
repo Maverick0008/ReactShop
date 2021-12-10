@@ -1,21 +1,21 @@
 import React from "react";
 import Card from "../components/Card/Card"
+
 function Home({items,
-            cartItems,
             searchValue,
             onChangeSearch,
             onAddToCart,
             onAddToFavorite,
             isLoading}) {
     const renderItems = () => {
-
+    
         return (isLoading ? [...Array(8)] : items)  
             .map((item, index) => (
               <Card
                 key={index}
                 onFavorite ={(obj)=> onAddToFavorite(obj)}
                 onPlus={(obj)=> onAddToCart(obj)}
-                isAdded = {cartItems.some((obj) => obj.id === item.id)}
+                // isAdded = {itemAddedCart(item && item.id)}
                 loading = {isLoading}
                 {...item}
               //   isAdded = {cartItems.some((item) => item.id === obj.id)}
@@ -33,7 +33,6 @@ function Home({items,
           </div>
         </div>
 
-        {console.log(cartItems, items)}
         <div className="d-flex flex-wrap">
           {renderItems()}
         </div>

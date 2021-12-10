@@ -1,5 +1,25 @@
 import React from "react";
+import AppContext from "../context";
+import Info from "./Card/info";
+import axios from "axios";
 function Cart({ onCartClose, onRemove, items = [] }) {
+    const {cartItems,setCartItems} = React.useContext(AppContext)
+    const [CompleteOrder, setCompleteOrder] = React.useState(false)
+
+    const onClickOreder = async () => {
+        axios.post('https://61adc67fd228a9001703af4f.mockapi.io/orders', {
+            items: cartItems,
+        })
+       
+        setCompleteOrder(true);
+        setCartItems([])
+       for (let i = 0; i < cartItems.length; i++) {
+           const item = cartItems[i];
+           await axios.delete(`https://61adc67fd228a9001703af4f.mockapi.io/cart/${item.id}`)
+           
+       }
+       
+    }
     return (
         <div className="rightBarShadow">
             <div className="rightBar">
@@ -34,12 +54,9 @@ function Cart({ onCartClose, onRemove, items = [] }) {
                                         <b>5$</b>
                                     </li>
                                 </ul>
-                                <button>Checkout</button>
+                                <button onClick={onClickOreder}>Checkout</button>
                             </div></div> ) : (
-                        <div className="d-flex align-center flex-column flex">
-                            <h2 className="mb-20">Cart empty</h2>
-                            <img src="/img/emptyCart.png" alt="emptyCart" />
-                        </div>
+                                <Info title={CompleteOrder ?"Order placed" : "Cart empty"} />
                             )}
 
 

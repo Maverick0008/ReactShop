@@ -1,16 +1,18 @@
 import React from "react";
 import Style from './Card.module.scss'
 import ContentLoader from "react-content-loader"
+import AppContext from "../../context";
 
-function Card({ id, title, img, price, onPlus, onFavorite, isFavorite = false, isAdded = false, loading = false }) {
-  const [Added, setAdded] = React.useState(isAdded);
+function Card({ id, title, img, price, onPlus, onFavorite, isFavorite = false,loading = false }) {
+  const {itemAddedCart} = React.useContext(AppContext)
+  // const [Added, setAdded] = React.useState(isAdded);
   const [Favorite, setFavorite] = React.useState(isFavorite)
   const handleClick = () => {
     onPlus({ id, parentId: id, title, img, price })
-    setAdded(!Added)
+    // setAdded(!Added)
   }
   const onClickFavorite = () => {
-    onFavorite({ id, title, img, price })
+    onFavorite({ id,parentId: id, title, img, price })
     setFavorite(!Favorite)
   }
   return (
@@ -40,7 +42,7 @@ function Card({ id, title, img, price, onPlus, onFavorite, isFavorite = false, i
               <div className="d-flex align-center">
                 <span className={Style.price}>Price:</span>
                 <b>{price}$</b>
-                <img width={20} height={20} className={Style.addToCard} onClick={handleClick} src={Added ? "/img/addedToCard.svg" : "/img/addToCard.svg"} alt="Add" />
+                <img width={20} height={20} className={Style.addToCard} onClick={handleClick} src={itemAddedCart(id) ? "/img/addedToCard.svg" : "/img/addToCard.svg"} alt="Add" />
                 <img width={20} height={20} onClick={onClickFavorite} src={Favorite ? "/img/favorite_add.svg" : "/img/favorite.svg"} alt="favorite" />
               </div>
 
