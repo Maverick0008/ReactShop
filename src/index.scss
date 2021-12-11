@@ -123,3 +123,24 @@ header {
     }
   }
 }
+
+@media only screen and (max-width: 480px) {
+  .mobileStyle {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .search__box {
+    margin-left: 40px;
+    border: 1px solid #f2f2f2;
+    input {
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      width: 100px;
+    }
+  }
+  .cartItem  {
+    width: 400px;
+  }
+}

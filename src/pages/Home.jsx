@@ -33,7 +33,7 @@ function Home({items,
           </div>
         </div>
 
-        <div className="d-flex flex-wrap">
+        <div className="mobileStyle d-flex flex-wrap">
           {renderItems()}
         </div>
       </div>
