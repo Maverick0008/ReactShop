@@ -42,8 +42,8 @@ function Card({ id, title, img, price, onPlus, onFavorite, isFavorite = false,lo
               <div className="d-flex align-center">
                 <span className={Style.price}>Price:</span>
                 <b>{price}$</b>
-                <img width={20} height={20} className={Style.addToCard} onClick={handleClick} src={itemAddedCart(id) ? "/img/addedToCard.svg" : "/img/addToCard.svg"} alt="Add" />
-                <img width={20} height={20} onClick={onClickFavorite} src={Favorite ? "/img/favorite_add.svg" : "/img/favorite.svg"} alt="favorite" />
+                {onPlus &&  <img width={20} height={20} className={Style.addToCard} onClick={handleClick} src={itemAddedCart(id) ? "/img/addedToCard.svg" : "/img/addToCard.svg"} alt="Add" />}
+                {onFavorite && <img width={20} height={20} onClick={onClickFavorite} src={Favorite ? "/img/favorite_add.svg" : "/img/favorite.svg"} alt="favorite" />}
               </div>
 
             </div>

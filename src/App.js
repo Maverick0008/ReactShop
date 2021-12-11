@@ -5,6 +5,7 @@ import React from "react";
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom'
 import Favorites from "./pages/Favorites";
+import Orders from "./pages/Orders";
 import AppContext from "./context";
 
 
@@ -58,9 +59,9 @@ function App() {
   }
   const onAddToFavorite = async (obj) => {
     try {
-      if (favorites.find((favObj) => favObj.id === obj.id)) {
-        await axios.delete(`https://61adc67fd228a9001703af4f.mockapi.io/favorites/${obj.id}`)
-        setFavorites((prev) => prev.filter((favObj) => favObj.id !== obj.id))
+      if (favorites.find((favObj) => Number(favObj.id) === Number(obj.id))) {
+        axios.delete(`https://61adc67fd228a9001703af4f.mockapi.io/favorites/${obj.id}`)
+        setFavorites((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)))
       } else {
         const { data } = await axios.post('https://61adc67fd228a9001703af4f.mockapi.io/favorites', obj)
 
@@ -75,7 +76,7 @@ function App() {
     return cartItems.some((obj) => Number(obj.parentId) === Number(id))
   }
   return (
-    <AppContext.Provider value={{cartItems, favorites, items, itemAddedCart,onAddToFavorite,setCartItems}}>
+    <AppContext.Provider value={{cartItems, favorites, items, itemAddedCart,onAddToFavorite,setCartItems,onAddToCart}}>
       <div className="wrapper clear">
       {cardOpen && <Cart items={cartItems} onCartClose={() => setCardOpen(false)} onRemove={onRemoveProduct} />}
       <Header onClickCart={() => setCardOpen(true)} />
@@ -95,6 +96,11 @@ function App() {
         </Route>
         <Route path='/favorites' exact element={
           <Favorites  />
+        }>
+
+        </Route>
+        <Route path='/orders' exact element={
+          <Orders  />
         }>
 
         </Route>

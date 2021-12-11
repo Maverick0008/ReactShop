@@ -16,13 +16,16 @@ function Header(props) {
             </div>
             <ul className="d-flex cu-p align-center">
                 <Link to="/favorites">
-                    <img width={30} height={30} src="/img/pageFavorite.svg" alt="pageFavorite" />
+                    <img width={28} height={28} src="/img/pageFavorite.svg" alt="pageFavorite" />
                 </Link>
            
                 <li onClick={props.onClickCart} className="d-flex align-center mr-30">
                     <img width={33} height={33} src="/img/cardAdd.svg" alt="cart" />
                     <span>{totalPrice}$</span>
                 </li>
+                <Link to="/orders">
+                    <img width={28} height={28} src="/img/user.svg" alt="user" />
+                </Link>
             </ul>
         </header>
     )
