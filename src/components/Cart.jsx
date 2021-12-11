@@ -23,16 +23,16 @@ function Cart({ onCartClose, onRemove, items = [] }) {
     return (
         <div className="rightBarShadow">
             <div className="rightBar">
-                <h2 className="mb-30 d-flex justify-between">Cart<img onClick={onCartClose} className="buttonRemove cu-p" src="/img/button-remove.svg" alt="remove" /></h2>
+                <h2 className="mb-30 d-flex justify-between">Cart<img width={20} height={20} onClick={onCartClose} className="buttonRemove cu-p" src="/img/button-remove.svg" alt="remove" /></h2>
 
                 {
                     items.length > 0 ? (
                         <div>
-                            <div className="items">
+                            <div className="items flex">
                                 {items.map((obj) => (
-                                    <div key={obj.id} className="cartItem d-flex align-center mb-20">
-                                        <img className="mr-15" width={100} height={100} src={obj.img} alt="Albom" />
-                                        <div className="mr-40">
+                                    <div key={obj.id} className="cartItem d-flex align-center mb-20 ">
+                                        <img className="mr-20" width={100} height={100} src={obj.img} alt="Albom" />
+                                        <div className="mr-20 flex">
                                             <p>{obj.title}</p>
                                             <b>{obj.price}$</b>
                                         </div>
