@@ -5,7 +5,7 @@ import axios from "axios";
 function Cart({ onCartClose, onRemove, items = [] }) {
     const {cartItems,setCartItems} = React.useContext(AppContext)
     const [CompleteOrder, setCompleteOrder] = React.useState(false)
-
+    const totalPrice = cartItems.reduce((sum, obj) => obj.price + sum, 0)
     const onClickOreder = async () => {
         axios.post('https://61adc67fd228a9001703af4f.mockapi.io/orders', {
             items: cartItems,
@@ -46,12 +46,12 @@ function Cart({ onCartClose, onRemove, items = [] }) {
                                     <li className="d-flex">
                                         <span>Total:</span>
                                         <div></div>
-                                        <b>50$</b>
+                                        <b>{totalPrice}$</b>
                                     </li>
                                     <li className="d-flex">
-                                        <span>Tax: 10%</span>
+                                        <span>Tax: 9,5%</span>
                                         <div></div>
-                                        <b>5$</b>
+                                        <b>{totalPrice * 0.095}$</b>
                                     </li>
                                 </ul>
                                 <button onClick={onClickOreder}>Checkout</button>
